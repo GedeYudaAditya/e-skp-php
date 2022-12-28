@@ -2,19 +2,30 @@
 include 'layouts/header.php';
 include 'layouts/slidebar.php';
 
-if (isset($_SESSION['login'])) {
-    $user = new User();
-    $user = $user->getUser([
-        'username' => $_SESSION['username']
-    ]);
-    if ($user['role'] == 'user') {
-        header('Location: ' . BASE_URL . '/');
-    } else if ($user['role'] == 'bem') {
-        header('Location: ' . BASE_URL . '/?page=bem');
-    }
-} else if (!isset($_SESSION['login'])) {
-    header('Location: ' . BASE_URL . '/?page=login');
-}
+include 'pages/admin/auth/filter.php';
+
+$userD = new User();
+$dataMaha = $userD->getUserWhere(
+    [
+        'role' => 'user'
+    ]
+);
+
+$dataBem = $userD->getUserWhere(
+    [
+        'role' => 'bem'
+    ]
+);
+
+$dataAdmin = $userD->getUserWhere(
+    [
+        'role' => 'admin'
+    ]
+);
+
+$allUser = $userD->all();
+
+// var_dump($allUser->count())
 ?>
 
 <!-- Content Wrapper -->
@@ -26,7 +37,7 @@ if (isset($_SESSION['login'])) {
         <?php
         include 'layouts/topbar.php';
         ?>
-        
+
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -49,7 +60,11 @@ if (isset($_SESSION['login'])) {
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             Jumlah Mahasiswa</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">40.000</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php
+                                            echo $dataMaha->count();
+                                            ?>
+                                        </div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -69,8 +84,12 @@ if (isset($_SESSION['login'])) {
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Jumlah yang sudah divalidasi</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">10.000</div>
+                                            Jumlah Akun Admin</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php
+                                            echo $dataAdmin->count();
+                                            ?>
+                                        </div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-list fa-2x text-gray-300"></i>
@@ -81,31 +100,28 @@ if (isset($_SESSION['login'])) {
                     </a>
                 </div>
 
-                <!-- Earnings (Monthly) Card Example -->
+
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Progress
-                                    </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="progress progress-sm mr-2">
-                                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
+                    <a href="adminBem.html">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            Jumlah Admin BEM</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php
+                                            echo $dataBem->count();
+                                            ?>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    <div class="col-auto">
+                                        <i class="fas fa-user fa-2x text-gray-300"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <!-- Pending Requests Card Example -->
@@ -115,8 +131,12 @@ if (isset($_SESSION['login'])) {
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        Pending Validate</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">30.000</div>
+                                        Semua Akun</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php
+                                        echo $allUser->count();
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -124,24 +144,6 @@ if (isset($_SESSION['login'])) {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <a href="adminBem.html">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                            Jumlah Admin BEM</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-user fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
                 </div>
             </div>
 

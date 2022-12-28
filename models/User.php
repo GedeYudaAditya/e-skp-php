@@ -3,19 +3,6 @@ require_once 'DB.php';
 
 class User extends DB
 {
-    // public $id;
-    // public $username;
-    // public $password;
-    // public $role;
-    // public $nama;
-    // public $email;
-    // public $kegiatan;
-    // public $no_hp;
-    // public $foto;
-    // public $status;
-    // public $created_at;
-    // public $updated_at;
-    // public $deleted_at;
 
     public function __construct()
     {
@@ -24,39 +11,80 @@ class User extends DB
 
     public function all()
     {
-        return $this->db->users->find();
+        try {
+            return $this->db->users->find();
+        } catch (\Throwable $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return false;
+        }
     }
 
     public function addUser($data)
     {
-        $this->db->users->insertOne($data);
+        try {
+            $result = $this->db->users->insertOne($data);
+            return $result->getInsertedCount();
+        } catch (\Throwable $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return false;
+        }
     }
 
     public function getUser($data)
     {
-        return $this->db->users->findOne($data);
+        try {
+            return $this->db->users->findOne($data);
+        } catch (\Throwable $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return false;
+        }
     }
 
     public function getUserWhere($data)
     {
-        return $this->db->users->find($data);
+        try {
+            return $this->db->users->find($data);
+        } catch (\Throwable $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return false;
+        }
     }
 
     public function addManyUser($data)
     {
-        $this->db->users->insertMany($data);
+        try {
+            $result = $this->db->users->insertMany($data);
+            return $result->getInsertedCount();
+        } catch (\Throwable $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return false;
+        }
     }
 
     public function deleteUser($username)
     {
-        $this->db->users->deleteOne(['username' => $username]);
+        try {
+            $result = $this->db->users->deleteOne(
+                ['username' => $username]
+            );
+            return $result->getDeletedCount();
+        } catch (\Throwable $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return false;
+        }
     }
 
     public function updateUser($username, $data)
     {
-        $this->db->users->updateOne(
-            ['username' => $username],
-            ['$set' => $data]
-        );
+        try {
+            $result = $this->db->users->updateOne(
+                ['username' => $username],
+                ['$set' => $data]
+            );
+            return $result->getModifiedCount();
+        } catch (\Throwable $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return false;
+        }
     }
 }

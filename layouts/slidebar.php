@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= BASE_URL ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -40,8 +40,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Admin</h6>
-                    <a class="collapse-item" href="page/dataAdmin.html">Daftar Admin</a>
-                    <a class="collapse-item" href="page/tambahAdmin.html">Tambah Admin</a>
+                    <a class="collapse-item" href="<?= BASE_URL . '?page=admin/daftarAdmin' ?>">Daftar Admin</a>
+                    <a class="collapse-item" href="<?= BASE_URL . '?page=admin/tambahAdmin' ?>">Tambah Admin</a>
                 </div>
             </div>
         </li>
@@ -55,8 +55,8 @@
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"></h6>
-                    <a class="collapse-item" href="page/dataMahasiswa.html">Akun Mahasiswa</a>
-                    <a class="collapse-item" href="page/dataMahasiswa.html">Akun BEM</a>
+                    <a class="collapse-item" href="<?= BASE_URL . '?page=admin/akunMahasiswa' ?>">Akun Mahasiswa</a>
+                    <a class="collapse-item" href="<?= BASE_URL . '?page=admin/akunBem' ?>">Akun BEM</a>
                     <!-- <a class="collapse-item" href="utilities-border.html">Pending Validate</a> -->
                     <!-- <a class="collapse-item" href="utilities-animation.html">Validated Mahasiswa</a> -->
                     <!-- <a class="collapse-item" href="utilities-other.html">Other</a> -->

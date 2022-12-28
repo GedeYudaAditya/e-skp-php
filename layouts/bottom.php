@@ -27,6 +27,8 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?= BASE_URL ?>/vendor/jquery/jquery.min.js"></script>
 <script src="<?= BASE_URL ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -43,6 +45,16 @@
 <!-- Page level custom scripts -->
 <script src="<?= BASE_URL ?>/js/demo/chart-area-demo.js"></script>
 <script src="<?= BASE_URL ?>/js/demo/chart-pie-demo.js"></script>
+
+<!-- clound datatable -->
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
+
 
 </body>
 
