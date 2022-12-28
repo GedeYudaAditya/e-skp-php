@@ -11,11 +11,15 @@ $dataMaha = $userD->getUserWhere(
     ]
 );
 
+$statsUser = $dataMaha->toArray();
+
 $dataBem = $userD->getUserWhere(
     [
         'role' => 'bem'
     ]
 );
+
+$statsBem = $dataBem->toArray();
 
 $dataAdmin = $userD->getUserWhere(
     [
@@ -23,9 +27,13 @@ $dataAdmin = $userD->getUserWhere(
     ]
 );
 
+$statsAdmin = $dataAdmin->toArray();
+
 $allUser = $userD->all();
 
-// var_dump($allUser->count())
+$statsAll = $allUser->toArray();
+
+// var_dump($statsAll);
 ?>
 
 <!-- Content Wrapper -->
@@ -62,7 +70,7 @@ $allUser = $userD->all();
                                             Jumlah Mahasiswa</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php
-                                            echo $dataMaha->count();
+                                            echo count($statsUser);
                                             ?>
                                         </div>
                                     </div>
@@ -87,7 +95,7 @@ $allUser = $userD->all();
                                             Jumlah Akun Admin</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php
-                                            echo $dataAdmin->count();
+                                            echo count($statsAdmin);
                                             ?>
                                         </div>
                                     </div>
@@ -111,7 +119,7 @@ $allUser = $userD->all();
                                             Jumlah Admin BEM</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php
-                                            echo $dataBem->count();
+                                            echo count($statsBem);
                                             ?>
                                         </div>
                                     </div>
@@ -134,7 +142,7 @@ $allUser = $userD->all();
                                         Semua Akun</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                         <?php
-                                        echo $allUser->count();
+                                        echo count($statsAll);
                                         ?>
                                     </div>
                                 </div>
