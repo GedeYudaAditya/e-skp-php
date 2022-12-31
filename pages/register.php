@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'role' => 'user',
+            'events' => [],
             'status' => 'active',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -28,11 +29,11 @@ if (isset($_POST['submit'])) {
                 'username' => $username
             ]
         );
-        if ($user['role'] == 'admin') {
+        if ($user['role'] == 'admin' && $user['status'] == 'active') {
             header('Location: ' . BASE_URL . '/?page=dashboard');
-        } else if ($user['role'] == 'user') {
+        } else if ($user['role'] == 'user' && $user['status'] == 'active') {
             header('Location: ' . BASE_URL . '/');
-        } else {
+        } else if ($user['role'] == 'bem' && $user['status'] == 'active') {
             header('Location: ' . BASE_URL . '/?page=bem');
         }
     } else {
@@ -47,11 +48,11 @@ if (isset($_SESSION['login'])) {
             'username' => $_SESSION['username']
         ]
     );
-    if ($user['role'] == 'admin') {
+    if ($user['role'] == 'admin' && $user['status'] == 'active') {
         header('Location: ' . BASE_URL . '/?page=dashboard');
-    } else if ($user['role'] == 'user') {
+    } else if ($user['role'] == 'user' && $user['status'] == 'active') {
         header('Location: ' . BASE_URL . '/');
-    } else {
+    } else if ($user['role'] == 'bem' && $user['status'] == 'active') {
         header('Location: ' . BASE_URL . '/?page=bem');
     }
 }

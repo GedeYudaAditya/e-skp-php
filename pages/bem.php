@@ -18,16 +18,16 @@ if (isset($_SESSION['login'])) {
 ?>
 
 <!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+<div id="content-wrapper" class="d-flex flex-column inti">
 
-    <?php
-    include 'layouts/topbar.php';
-    ?>
     <!-- Main Content -->
     <div id="content">
+        <?php
+        include 'layouts/topbar.php';
+        ?>
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid isinya">
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -35,7 +35,7 @@ if (isset($_SESSION['login'])) {
                 <!-- <a href="page/tambahAdmin.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sm text-white-50"></i>Tambahkan Admin</a> -->
             </div>
 
-            
+
 
         </div>
 

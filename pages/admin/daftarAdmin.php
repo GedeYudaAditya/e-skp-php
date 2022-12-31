@@ -7,15 +7,15 @@ include 'pages/admin/auth/filter.php';
 include 'pages/admin/logic/logic.php';
 ?>
 <!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+<div id="content-wrapper" class="d-flex flex-column inti">
 
-    <?php
-    include 'layouts/topbar.php';
-    ?>
     <!-- Main Content -->
     <div id="content">
+        <?php
+        include 'layouts/topbar.php';
+        ?>
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid isinya">
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -50,7 +50,7 @@ include 'pages/admin/logic/logic.php';
                             <th scope="col">Nama</th>
                             <th scope="col">Username</th>
                             <th scope="col">Email</th>
-                            <!-- <th scope="col">Password</th> -->
+                            <th scope="col">Status</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -78,6 +78,13 @@ include 'pages/admin/logic/logic.php';
                                 </td>
                                 <td>
                                     <?= $value['email'] ?>
+                                </td>
+                                <td>
+                                    <?php if ($value['status'] == 'active') : ?>
+                                        <span class="badge bg-success">Active</span>
+                                    <?php else : ?>
+                                        <span class="badge bg-danger">Inactive</span>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
                                     <!-- <a href="#" class="btn btn-primary me-1">Edit</a> -->
@@ -128,16 +135,19 @@ foreach ($datas as $isi) : ?>
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?= $isi['email'] ?>">
                         </div>
-                        <!-- <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" value="">
-                        </div> -->
+                        <div class="mb-3">
+                            <label for="status" class="form-label">status</label>
+                            <select class="form-select" aria-label="Pilih status akun" name="status" id="status">
+                                <option value="active" <?= $isi['status'] == 'active' ? 'selected' : '' ?>>Active</option>
+                                <option value="inactive" <?= $isi['status'] == 'inactive' ? 'selected' : '' ?>>Inactive</option>
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label for="role" class="form-label">Role</label>
                             <select class="form-select" aria-label="Default select example" name="role" id="role">
-                                <option value="admin" selected>Admin</option>
-                                <option value="bem">BEM</option>
-                                <option value="user">User</option>
+                                <option value="admin" <?= $isi['role'] == 'admin' ? 'selected' : '' ?>>Admin</option>
+                                <option value="bem" <?= $isi['role'] == 'bem' ? 'selected' : '' ?>>BEM</option>
+                                <option value="user" <?= $isi['role'] == 'user' ? 'selected' : '' ?>>Mahasiswa</option>
                             </select>
                         </div>
                     </div>
