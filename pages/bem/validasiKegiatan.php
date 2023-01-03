@@ -90,48 +90,50 @@ $userbarus = $usersbaru->getUserWhere([
                                 <tbody>
                                     <?php
                                     $s = 0;
-                                    foreach ($value['events'] as $e) : ?>
-                                        <?php if ($e['status'] != 'acc') : ?>
-                                            <?php
-                                            // search event with status pen
-                                            $event = new Event();
-                                            $event = $event->getEventWhere([
-                                                'slug' => $e['slug'],
-                                            ]);
+                                    if (isset($value['events'])) : ?>
+                                        <?php foreach ($value['events'] as $e) : ?>
+                                            <?php if ($e['status'] != 'acc') : ?>
+                                                <?php
+                                                // search event with status pen
+                                                $event = new Event();
+                                                $event = $event->getEventWhere([
+                                                    'slug' => $e['slug'],
+                                                ]);
 
-                                            $event = $event->toArray();
+                                                $event = $event->toArray();
 
-                                            // var_dump($event[0]['name']);
+                                                // var_dump($event[0]['name']);
 
-                                            ?>
-                                            <tr>
-                                                <th scope="row"><?= $s + 1 ?></th>
-                                                <td><?= $event[0]['name'] ?></td>
-                                                <td><?= $e['jabatan'] ?></td>
-                                                <td><?= getDateMongoDB($event[0]['created_at']) ?></td>
-                                                <td>
-                                                    <?php if ($e['status'] == 'pen') : ?>
-                                                        <span class="badge bg-warning text-dark">Pending</span>
-                                                    <?php elseif ($e['status'] == 'tol') : ?>
-                                                        <span class="badge bg-danger">Tolak</span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td>
-                                                    <a href="<?= BASE_URL . '/uploads/' . $e['bukti'] ?>" target="_blank" class="btn btn-primary btn-sm">Lihat Bukti</a>
-                                                </td>
-                                                <td>
-                                                    <form action="" method="post">
-                                                        <input type="hidden" name="username" value="<?= $value['username'] ?>">
-                                                        <input type="hidden" name="slug" value="<?= $e['slug'] ?>">
-                                                        <input type="hidden" name="jabatan" value="<?= $e['jabatan'] ?>">
-                                                        <button type="submit" name="acc" class="btn btn-success">Acc</button>
-                                                        <button type="submit" name="reject" class="btn btn-danger">Reject</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <?php $s++ ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                                ?>
+                                                <tr>
+                                                    <th scope="row"><?= $s + 1 ?></th>
+                                                    <td><?= $event[0]['name'] ?></td>
+                                                    <td><?= $e['jabatan'] ?></td>
+                                                    <td><?= getDateMongoDB($event[0]['created_at']) ?></td>
+                                                    <td>
+                                                        <?php if ($e['status'] == 'pen') : ?>
+                                                            <span class="badge bg-warning text-dark">Pending</span>
+                                                        <?php elseif ($e['status'] == 'tol') : ?>
+                                                            <span class="badge bg-danger">Tolak</span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="<?= BASE_URL . '/uploads/' . $e['bukti'] ?>" target="_blank" class="btn btn-primary btn-sm">Lihat Bukti</a>
+                                                    </td>
+                                                    <td>
+                                                        <form action="" method="post">
+                                                            <input type="hidden" name="username" value="<?= $value['username'] ?>">
+                                                            <input type="hidden" name="slug" value="<?= $e['slug'] ?>">
+                                                            <input type="hidden" name="jabatan" value="<?= $e['jabatan'] ?>">
+                                                            <button type="submit" name="acc" class="btn btn-success">Acc</button>
+                                                            <button type="submit" name="reject" class="btn btn-danger">Reject</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <?php $s++ ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
