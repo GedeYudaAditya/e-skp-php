@@ -23,6 +23,11 @@ if (isset($_POST['ajukan'])) {
         ];
     }
 
+    if($_FILES['file'] == null ){
+        $_SESSION['error'] = 'Kegiatan Memerlukan Bukti';
+        header('Location: ' . BASE_URL . '/?page=user/dataKegiatan');
+    }
+
     // Store File
     try {
         $file = $_FILES['file'];
@@ -77,6 +82,7 @@ if (isset($_POST['ajukan'])) {
         header('Location: ' . BASE_URL . '/?page=user/dataKegiatan');
     } catch (\Throwable $e) {
         $_SESSION['error'] = 'Kegiatan gagal diajukan';
+        header('Location: ' . BASE_URL . '/?page=user/dataKegiatan');
     }
 
     // var_dump($userEvents);

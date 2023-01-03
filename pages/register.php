@@ -15,12 +15,23 @@ if (isset($_POST['submit'])) {
         $user = new User();
         // check if email or username is already exist
         $user = $user->getUser([
-            'username' => $username,
-            'email' => $email
+            '$or' => [
+                [
+                    'username' => $username,
+                ],
+                [
+                    'email' => $email,
+                ],
+            ]
         ]);
+
+        // var_dump($user);
+        // die;
 
         if ($user) {
             echo "<script>alert('Username atau Email sudah terdaftar!')</script>";
+            $_SESSION['error'] = 'Username atau Email sudah terdaftar!';
+            return header('Location: ' . BASE_URL . '/?page=register');
         } else {
             $user = new User();
             $user->addUser([
@@ -85,35 +96,35 @@ if (isset($_SESSION['login'])) {
         <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-        <?php if (isset($error)) : ?>
+        <?php if (isset($_SESSION['error'])) : ?>
             <div class="alert alert-danger" role="alert">
-                <?= $error ?>
+                <?= $_SESSION['error'] ?>
             </div>
         <?php endif; ?>
 
         <div class="form-floating">
-            <input type="text" name="name" class="form-control" id="floatingInput" placeholder="Massukan nama">
-            <label for="floatingInput">Nama</label>
+            <input type="text" name="name" class="form-control" id="floatingInput1" placeholder="Massukan nama">
+            <label for="floatingInput1">Nama</label>
         </div>
         <div class="form-floating">
-            <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Massukan nama">
-            <label for="floatingInput">Nama Pengguna</label>
+            <input type="text" name="username" class="form-control" id="floatingInput2" placeholder="Massukan namapengguna">
+            <label for="floatingInput2">Nama Pengguna</label>
         </div>
         <div class="form-floating">
-            <input type="number" name="nim" class="form-control" id="floatingInput" placeholder="Massukan nim">
-            <label for="floatingInput">NIM</label>
+            <input type="number" name="nim" class="form-control" id="floatingInput3" placeholder="Massukan nim">
+            <label for="floatingInput3">NIM</label>
         </div>
         <div class="form-floating">
-            <input type="text" name="jurusan" class="form-control" id="floatingInput" placeholder="Massukan jurusan">
-            <label for="floatingInput">Jurusan</label>
+            <input type="text" name="jurusan" class="form-control" id="floatingInput4" placeholder="Massukan jurusan">
+            <label for="floatingInput4">Jurusan</label>
         </div>
         <div class="form-floating">
-            <input type="text" name="prodi" class="form-control" id="floatingInput" placeholder="Massukan prodi">
-            <label for="floatingInput">Prodi</label>
+            <input type="text" name="prodi" class="form-control" id="floatingInput5" placeholder="Massukan prodi">
+            <label for="floatingInput5">Prodi</label>
         </div>
         <div class="form-floating">
-            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <input type="email" name="email" class="form-control" id="floatingInput6" placeholder="name@example.com">
+            <label for="floatingInput6">Email address</label>
         </div>
         <div class="form-floating">
             <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
@@ -131,5 +142,6 @@ if (isset($_SESSION['login'])) {
 </main>
 
 <?php
+unset($_SESSION['error']);
 include 'layouts/auth/authfooter.php';
 ?>

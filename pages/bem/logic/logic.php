@@ -77,6 +77,7 @@ if (isset($_POST['acc'])) {
                 'slug' => $_POST['slug'],
                 'status' => 'acc',
                 'jabatan' => $_POST['jabatan'],
+                'bukti' => $event['bukti'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
@@ -85,6 +86,7 @@ if (isset($_POST['acc'])) {
             'slug' => $event['slug'],
             'status' => $event['status'],
             'jabatan' => $event['jabatan'],
+            'bukti' => $event['bukti'],
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -99,6 +101,8 @@ if (isset($_POST['acc'])) {
             'updated_at' => date('Y-m-d H:i:s'),
         ]
     );
+
+    return header('Location: ' . BASE_URL . '/?page=bem/validasiKegiatan');
 }
 
 if (isset($_POST['reject'])) {
@@ -115,6 +119,7 @@ if (isset($_POST['reject'])) {
                 'slug' => $_POST['slug'],
                 'status' => 'reject',
                 'jabatan' => $_POST['jabatan'],
+                'bukti' => $event['bukti'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
@@ -123,6 +128,7 @@ if (isset($_POST['reject'])) {
             'slug' => $event['slug'],
             'status' => $event['status'],
             'jabatan' => $event['jabatan'],
+            'bukti' => $event['bukti'],
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -136,4 +142,6 @@ if (isset($_POST['reject'])) {
             'updated_at' => date('Y-m-d H:i:s'),
         ]
     );
+
+    return header('Location: ' . BASE_URL . '/?page=bem/validasiKegiatan');
 }

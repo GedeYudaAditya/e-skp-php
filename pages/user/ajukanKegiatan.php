@@ -97,7 +97,7 @@ include 'pages/user/logic/logic.php';
                                     <p class="modal__message" style="color: #ffffff;">Select a file to upload from your computer</p>
                                     <div class="modal__actions">
                                         <button class="modal__button modal__button--upload" type="button" data-action="file">Choose File</button>
-                                        <input id="file" type="file" name="file" hidden>
+                                        <input id="file" type="file" name="file" required hidden>
                                     </div>
                                     <div class="modal__actions" hidden>
                                         <svg class="modal__file-icon" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
