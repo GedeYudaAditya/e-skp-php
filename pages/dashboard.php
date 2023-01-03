@@ -37,7 +37,7 @@ $statsAll = $allUser->toArray();
 ?>
 
 <!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+<div id="content-wrapper" class="d-flex flex-column inti">
 
     <!-- Main Content -->
     <div id="content">
@@ -48,7 +48,7 @@ $statsAll = $allUser->toArray();
 
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid isinya">
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">

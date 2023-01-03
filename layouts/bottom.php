@@ -36,6 +36,21 @@
 <!-- Core plugin JavaScript-->
 <script src="<?= BASE_URL ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+<!-- admin css -->
+<?php if ($user->role == 'admin') : ?>
+
+<?php endif; ?>
+
+<!-- bem css -->
+<?php if ($user->role == 'bem') : ?>
+
+<?php endif; ?>
+
+<!-- user css -->
+<?php if ($user->role == 'user') : ?>
+    <!-- <script src=""></script> -->
+<?php endif; ?>
+
 <!-- Custom scripts for all pages-->
 <script src="<?= BASE_URL ?>/js/sb-admin-2.min.js"></script>
 

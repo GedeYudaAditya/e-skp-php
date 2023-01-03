@@ -11,15 +11,17 @@ if (isset($_POST['submit'])) {
     if (password_verify($password, $user['password'])) {
       $_SESSION['login'] = true;
       $_SESSION['username'] = $user['username'];
-      if ($user['role'] == 'admin') {
+      if ($user['role'] == 'admin' && $user['status'] == 'active') {
         header('Location: ' . BASE_URL . '/?page=dashboard');
-      } else if ($user['role'] == 'user') {
+      } else if ($user['role'] == 'user' && $user['status'] == 'active') {
         header('Location: ' . BASE_URL . '/');
-      } else if ($user['role'] == 'bem') {
+      } else if ($user['role'] == 'bem' && $user['status'] == 'active') {
         header('Location: ' . BASE_URL . '/?page=bem');
+      } else {
+        $error = 'Akun anda sedang tidak aktif, silahkan hubungi admin';
       }
     } else {
-      $error = 'Data salah';
+      $error = 'Pastikan email dan password benar';
     }
   } else {
     $error = 'Email tidak terdaftar';
@@ -33,12 +35,14 @@ if (isset($_SESSION['login'])) {
       'username' => $_SESSION['username']
     ]
   );
-  if ($user['role'] == 'admin') {
+  if ($user['role'] == 'admin' && $user['status'] == 'active') {
     header('Location: ' . BASE_URL . '/?page=dashboard');
-  } else if ($user['role'] == 'user') {
+  } else if ($user['role'] == 'user' && $user['status'] == 'active') {
     header('Location: ' . BASE_URL . '/');
-  } else if ($user['role'] == 'bem') {
+  } else if ($user['role'] == 'bem' && $user['status'] == 'active') {
     header('Location: ' . BASE_URL . '/?page=bem');
+  } else {
+    $error = 'Akun anda sedang tidak aktif, silahkan hubungi admin';
   }
 }
 ?>

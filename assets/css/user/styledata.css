@@ -1,0 +1,81 @@
+/* html, body {
+    margin:2em;
+    background-color: rgb(255, 255, 255);
+} */
+
+/* h1 {
+  color: rgb(0, 0, 0);
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  text-align: center;
+  text-shadow: 0.0625em 0.0625em 0.0625em rgb(222, 247, 255);
+
+  -webkit-animation: slide-in-bottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: slide-in-bottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+} */
+
+#pages {
+	color: rgb(0, 0, 0);
+	width: 93%;
+	height: 50%;
+	/* background: linear-gradient(rgb(8, 54, 75), rgb(0, 132, 255)); */
+	padding: 20px 20px 20px 20px;
+	margin-top: 1%;
+	margin-left: 4%;
+	margin-right: 4%;
+	-webkit-box-shadow: -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
+	-moz-box-shadow: -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
+	box-shadow: -7px 12px 16px 0px rgba(50, 50, 50, 0.83);
+
+	-webkit-animation: slide-in-bottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+	animation: slide-in-bottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+tfoot tr,
+thead tr {
+	background: rgb(44, 44, 44);
+	color: white;
+	margin-right: 3cm;
+}
+
+tfoot td {
+	height: 0cm;
+}
+
+
+.tabel {
+	width: 100%;
+	color: rgb(0, 0, 0);
+	background-color: white;
+	/* background-color: rgb(8, 54, 75) !important; */
+	/* font-family: Georgia, 'Times New Roman', Times, serif; */
+}
+
+@-webkit-keyframes slide-in-bottom {
+	0% {
+		-webkit-transform: translateY(1000px);
+		transform: translateY(1000px);
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slide-in-bottom {
+	0% {
+		-webkit-transform: translateY(1000px);
+		transform: translateY(1000px);
+		opacity: 0;
+	}
+
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}

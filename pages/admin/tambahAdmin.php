@@ -8,15 +8,16 @@ include 'pages/admin/logic/logic.php';
 
 ?>
 <!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
+<div id="content-wrapper" class="d-flex flex-column inti">
 
-    <?php
-    include 'layouts/topbar.php';
-    ?>
     <!-- Main Content -->
     <div id="content">
+
+        <?php
+        include 'layouts/topbar.php';
+        ?>
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid isinya">
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -52,6 +53,16 @@ include 'pages/admin/logic/logic.php';
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright @2022</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
 
 </div>
 
