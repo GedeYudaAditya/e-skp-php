@@ -31,33 +31,36 @@ include 'pages/user/logic/logic.php';
                     <div class="field-left">
 
                         <div class="form-title">Name :</div>
-                        <input type="text" name="name" placeholder="Masukan Nama Anda" class="form-field" value="<?= $user->name ?>" readonly>
+                        <input type="text" name="name" placeholder="Masukan Nama Anda" class="form-field" value="<?= $user['name'] ?>" readonly>
 
                         <div class="form-title">Jurusan :</div>
-                        <input type="text" name="Jurusan" placeholder="Masukan Jurusan Anda" class="form-field" value="<?= $user->jurusan ?>" readonly>
+                        <input type="text" name="Jurusan" placeholder="Masukan Jurusan Anda" class="form-field" value="<?= $user['jurusan'] ?>" readonly>
 
+                        <div class="form-title">Nama Kegiatan:</div>
+                        <select name="event_id" id="" class="form-field mb-3">
+                            <option selected>-- Pilih Kegiatan --</option>
+                            <?php
+                            $event = new Event();
+                            $events = $event->all();
+                            foreach ($events as $e) :
+                            ?>
+                                <option value="<?= $e['slug'] ?>"> <?= $e['name'] ?> </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="field-right">
 
                         <div class="form-title">NIM :</div>
-                        <input type="text" name="NIM" placeholder="Masukan NIM Anda" class="form-field" value="<?= $user->nim ?>" readonly>
+                        <input type="text" name="NIM" placeholder="Masukan NIM Anda" class="form-field" value="<?= $user['nim'] ?>" readonly>
 
                         <div class="form-title">Prodi :</div>
-                        <input type="text" name="Prodi" placeholder="Masukan Prodi Anda" class="form-field" value="<?= $user->prodi ?>" readonly>
+                        <input type="text" name="Prodi" placeholder="Masukan Prodi Anda" class="form-field" value="<?= $user['prodi'] ?>" readonly>
+
+                        <div class="form-title">Sebagai :</div>
+                        <input type="text" name="jabatan" placeholder="Masukan jabatan Anda" class="form-field" value="">
 
                     </div>
 
-                    <div class="form-title">Nama Kegiatan:</div>
-                    <select name="event_id" id="" class="form-field mb-3">
-                        <option selected>-- Pilih Kegiatan --</option>
-                        <?php
-                        $event = new Event();
-                        $events = $event->all();
-                        foreach ($events as $e) :
-                        ?>
-                            <option value="<?= $e['slug'] ?>"> <?= $e['name'] ?> </option>
-                        <?php endforeach; ?>
-                    </select>
 
                     <div id="upload" class="modalku" data-state="0" data-ready="false">
                         <div class="modal__header">
@@ -94,7 +97,7 @@ include 'pages/user/logic/logic.php';
                                     <p class="modal__message" style="color: #ffffff;">Select a file to upload from your computer</p>
                                     <div class="modal__actions">
                                         <button class="modal__button modal__button--upload" type="button" data-action="file">Choose File</button>
-                                        <input id="file" type="file" hidden>
+                                        <input id="file" type="file" name="file" hidden>
                                     </div>
                                     <div class="modal__actions" hidden>
                                         <svg class="modal__file-icon" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
@@ -166,6 +169,16 @@ include 'pages/user/logic/logic.php';
 
     </div>
     <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright @2022</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
 
 </div>
 

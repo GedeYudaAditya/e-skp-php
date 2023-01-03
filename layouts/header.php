@@ -59,15 +59,14 @@ if (isset($_POST['logout'])) {
 
     <!-- user css -->
     <?php if ($user->role == 'user') : ?>
-        <link rel="stylesheet" href="<?= asset('css/user/styledash.css')?>">
-        <link rel="stylesheet" href="<?= asset('css/user/styledata.css')?>">
-        <link rel="stylesheet" href="<?= asset('css/user/styleform.css')?>">
+        <link rel="stylesheet" href="<?= asset('css/user/styledash.css') ?>">
+        <link rel="stylesheet" href="<?= asset('css/user/styledata.css') ?>">
+        <link rel="stylesheet" href="<?= asset('css/user/styleform.css') ?>">
     <?php endif; ?>
 
     <!-- datatable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
-
 
 </head>
 

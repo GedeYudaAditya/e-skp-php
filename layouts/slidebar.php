@@ -111,8 +111,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Pilihan</h6>
-                    <a class="collapse-item" href="page/dataAdmin.html">Validasi Kegiatan Mahasiswa</a>
-                    <a class="collapse-item" href="page/tambahAdmin.html">Tambahkan Jenis Kegiatan</a>
+                    <a class="collapse-item" href="<?= BASE_URL . '?page=bem/validasiKegiatan' ?>">Validasi Kegiatan</a>
+                    <a class="collapse-item" href="<?= BASE_URL . '?page=bem/tambahKegiatan' ?>">Tambahkan Kegiatan</a>
                 </div>
             </div>
         </li>

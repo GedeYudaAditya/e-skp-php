@@ -21,14 +21,19 @@ class Event extends DB
         return $this->db->events->findOne($data);
     }
 
+    public function getEventWhere($data)
+    {
+        return $this->db->events->find($data);
+    }
+
     public function addManyEvent($data)
     {
         $this->db->events->insertMany($data);
     }
 
-    public function deleteEvent($id)
+    public function deleteEvent($slug)
     {
-        $this->db->events->deleteOne(['username' => $id]);
+        $this->db->events->deleteOne(['slug' => $slug]);
     }
 
     public function updateEvent($slug, $data)

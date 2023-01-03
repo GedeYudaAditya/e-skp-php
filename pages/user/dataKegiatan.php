@@ -48,14 +48,15 @@ include 'pages/user/auth/filter.php';
                             <th>Nama Kegiatan</th>
                             <th>Tanggal Disetujui</th>
                             <th>points</th>
+                            <th>bukti</th>
                             <th>status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $data = [];
-                        if (isset($user->events)) {
-                            foreach ($user->events as $key => $e) {
+                        if (isset($user['events'])) {
+                            foreach ($user['events'] as $key => $e) {
                                 $events = new Event();
                                 // var_dump($e['slug']);
                                 // die;
@@ -68,6 +69,7 @@ include 'pages/user/auth/filter.php';
                                     'tanggal' => $e->created_at,
                                     'nama_kegiatan' => $event->name,
                                     'tanggal_disetujui' => $e->updated_at,
+                                    'bukti' => $e->bukti,
                                     'points' => $event->skp_point,
                                     'status' => $e['status']
                                 ];
@@ -88,6 +90,9 @@ include 'pages/user/auth/filter.php';
                                 <td><?= $item['tanggal_disetujui'] ?></td>
                                 <td><?= $item['points'] ?></td>
                                 <td>
+                                    <a href="<?= BASE_URL . '/uploads/' . $item['bukti'] ?>" target="_blank" class="btn btn-sm btn-primary">Lihat</a>
+                                </td>
+                                <td>
                                     <?php if ($item['status'] == 'pen') : ?>
                                         <span class="badge bg-warning text-dark">Pending</span>
                                     <?php elseif ($item['status'] == 'acc') : ?>
@@ -107,6 +112,7 @@ include 'pages/user/auth/filter.php';
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -116,6 +122,16 @@ include 'pages/user/auth/filter.php';
 
     </div>
     <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright @2022</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
 
 </div>
 

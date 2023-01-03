@@ -4,31 +4,52 @@ include 'layouts/auth/authhead.php';
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $username = $_POST['username'];
+    $nim = $_POST['nim'];
+    $jurusan = $_POST['jurusan'];
+    $prodi = $_POST['prodi'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
 
     if ($password == $password_confirm) {
         $user = new User();
-        $user->addUser([
-            'name' => $name,
+        // check if email or username is already exist
+        $user = $user->getUser([
             'username' => $username,
-            'email' => $email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
-            'role' => 'user',
-            'events' => [],
-            'status' => 'active',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            'email' => $email
         ]);
 
-        $_SESSION['login'] = true;
-        $_SESSION['username'] = $username;
-        $user = $user->getUser(
-            [
-                'username' => $username
-            ]
-        );
+        if ($user) {
+            echo "<script>alert('Username atau Email sudah terdaftar!')</script>";
+        } else {
+            $user = new User();
+            $user->addUser([
+                'name' => $name,
+                'username' => $username,
+                'nim' => $nim,
+                'jurusan' => $jurusan,
+                'prodi' => $prodi,
+                'email' => $email,
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+                'role' => 'user',
+                'events' => [],
+                'status' => 'active',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $username;
+            $user = $user->getUser(
+                [
+                    'username' => $username
+                ]
+            );
+
+            echo "<script>alert('Pendaftaran berhasil!')</script>";
+            echo "<script>window.location.href = '" . BASE_URL . "/?page=login'</script>";
+        }
+
         if ($user['role'] == 'admin' && $user['status'] == 'active') {
             header('Location: ' . BASE_URL . '/?page=dashboard');
         } else if ($user['role'] == 'user' && $user['status'] == 'active') {
@@ -77,6 +98,18 @@ if (isset($_SESSION['login'])) {
         <div class="form-floating">
             <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Massukan nama">
             <label for="floatingInput">Nama Pengguna</label>
+        </div>
+        <div class="form-floating">
+            <input type="number" name="nim" class="form-control" id="floatingInput" placeholder="Massukan nim">
+            <label for="floatingInput">NIM</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" name="jurusan" class="form-control" id="floatingInput" placeholder="Massukan jurusan">
+            <label for="floatingInput">Jurusan</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" name="prodi" class="form-control" id="floatingInput" placeholder="Massukan prodi">
+            <label for="floatingInput">Prodi</label>
         </div>
         <div class="form-floating">
             <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">

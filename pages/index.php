@@ -70,9 +70,10 @@ include 'pages/user/auth/filter.php';
             <?php
 
             $skpPoint = 0;
+            $pending = 0;
 
-            if (isset($user->events)) {
-                foreach ($user->events as $e) {
+            if (isset($user['events'])) {
+                foreach ($user['events'] as $e) {
                     $events = new Event();
                     $event = $events->getEvent(
                         ['slug' => $e['slug']]
@@ -82,14 +83,17 @@ include 'pages/user/auth/filter.php';
                     if ($e['status'] == 'acc') {
                         $skpPoint += $event['skp_point'];
                     }
+                    if ($e['status'] == 'pen') {
+                        $pending += 1;
+                    }
                 }
             }
             ?>
 
             <div class="main-overview">
-                <div class="overviewcard  <?= $user->status == 'active' ? 'card-success' : '' ?>">
+                <div class="overviewcard  <?= $user['status'] == 'active' ? 'card-success' : '' ?>">
                     <div class="overviewcard__icon">
-                        <?= $user->status == 'active' ? 'Akun Aktif' : 'Akun Nonaktif' ?>
+                        <?= $user['status'] == 'active' ? 'Akun Aktif' : 'Akun Nonaktif' ?>
                     </div>
                     <div class="overviewcard__info">Status</div>
                 </div>
@@ -98,11 +102,11 @@ include 'pages/user/auth/filter.php';
                     <div class="overviewcard__info">Jumlah SKP</div>
                 </div>
                 <div class="overviewcard">
-                    <div class="overviewcard__icon"><?= isset($user->events) ? count($user->events) : '-' ?></div>
+                    <div class="overviewcard__icon"><?= isset($user['events']) ? count($user['events']) : '-' ?></div>
                     <div class="overviewcard__info">Event Diikuti</div>
                 </div>
                 <div class="overviewcard">
-                    <div class="overviewcard__icon">2</div>
+                    <div class="overviewcard__icon"><?= $pending ?></div>
                     <div class="overviewcard__info">Pengajuan Pending</div>
                 </div>
             </div>
@@ -123,6 +127,16 @@ include 'pages/user/auth/filter.php';
         </div>
     </div>
     <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright @2022</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
 
 </div>
 
