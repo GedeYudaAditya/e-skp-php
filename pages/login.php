@@ -11,6 +11,13 @@ if (isset($_POST['submit'])) {
     if (password_verify($password, $user['password'])) {
       $_SESSION['login'] = true;
       $_SESSION['username'] = $user['username'];
+
+      // check if user set remember me
+      if (isset($_POST['remember'])) {
+        // set redis store key with expired time
+        $redis->setex('remember', 60 * 60 * 24 * 30, $user['username']);
+      }
+
       if ($user['role'] == 'admin' && $user['status'] == 'active') {
         header('Location: ' . BASE_URL . '/?page=dashboard');
       } else if ($user['role'] == 'user' && $user['status'] == 'active') {
@@ -44,6 +51,36 @@ if (isset($_SESSION['login'])) {
   } else {
     $error = 'Akun anda sedang tidak aktif, silahkan hubungi admin';
   }
+} else {
+  // check if redis has key
+
+  if ($redis->exists('remember')) {
+    $_SESSION['login'] = true;
+    $_SESSION['username'] = $redis->get('remember');
+
+
+    $user = new User();
+    $user = $user->getUser(
+      [
+        'username' => $_SESSION['username']
+      ]
+    );
+
+    // var_dump($redis->get('remember'));
+    // echo '<br>';
+    // var_dump($user['status']);
+    // die;
+
+    if ($user['role'] == 'admin' && $user['status'] == 'active') {
+      header('Location: ' . BASE_URL . '/?page=dashboard');
+    } else if ($user['role'] == 'user' && $user['status'] == 'active') {
+      header('Location: ' . BASE_URL . '/');
+    } else if ($user['role'] == 'bem' && $user['status'] == 'active') {
+      header('Location: ' . BASE_URL . '/?page=bem');
+    } else {
+      $error = 'Akun anda sedang tidak aktif, silahkan hubungi admin';
+    }
+  }
 }
 ?>
 
@@ -69,11 +106,11 @@ if (isset($_SESSION['login'])) {
       <label for="floatingPassword">Password</label>
     </div>
 
-    <!-- <div class="checkbox mb-3">
+    <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" value="remember-me"> Remember me
+        <input type="checkbox" name="remember" value="remember-me"> Remember me
       </label>
-    </div> -->
+    </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">Belum punya akun? <a href="<?= BASE_URL ?>/?page=register">Daftar</a></p>
     <p class="mt-1 mb-3 text-muted">&copy; 2017–2022</p>

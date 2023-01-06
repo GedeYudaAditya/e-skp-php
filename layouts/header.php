@@ -7,6 +7,9 @@ $user = $user->getUser([
     'username' => $_SESSION['username']
 ]);
 if (isset($_POST['logout'])) {
+    // delete redis key
+    $redis->del('remember');
+
     session_destroy();
     header('Location: ' . BASE_URL . '/?page=login');
 }

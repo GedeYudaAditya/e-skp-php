@@ -87,6 +87,27 @@ if (isset($_SESSION['login'])) {
     } else if ($user['role'] == 'bem' && $user['status'] == 'active') {
         header('Location: ' . BASE_URL . '/?page=bem');
     }
+} else {
+    if ($redis->exists('remember')) {
+        $_SESSION['login'] = true;
+        $_SESSION['username'] = $redis->get('remember');
+
+        $user = new User();
+        $user = $user->getUser(
+            [
+                'username' => $_SESSION['username']
+            ]
+        );
+        if ($user['role'] == 'admin' && $user['status'] == 'active') {
+            header('Location: ' . BASE_URL . '/?page=dashboard');
+        } else if ($user['role'] == 'user' && $user['status'] == 'active') {
+            header('Location: ' . BASE_URL . '/');
+        } else if ($user['role'] == 'bem' && $user['status'] == 'active') {
+            header('Location: ' . BASE_URL . '/?page=bem');
+        } else {
+            $error = 'Akun anda sedang tidak aktif, silahkan hubungi admin';
+        }
+    }
 }
 
 ?>

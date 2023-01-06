@@ -26,3 +26,8 @@ function getDateMongoDB($date)
     $date = new \MongoDB\BSON\UTCDateTime(strtotime($date) * 1000);
     return $date->toDateTime()->format('d F Y | G : i');;
 }
+
+// Connect To Redis
+$redis = new Redis();
+$redis->connect('127.0.0.1', 6379);
+// echo "Connection to server sucessfully";
