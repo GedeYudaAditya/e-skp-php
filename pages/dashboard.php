@@ -53,7 +53,7 @@ $statsAll = $allUser->toArray();
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Dashboard Website</h1>
-                <a href="page/tambahAdmin.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sm text-white-50"></i>Tambahkan Admin</a>
+                <a href="<?= BASE_URL . '?page=admin/tambahAdmin' ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sm text-white-50"></i>Tambahkan Admin</a>
             </div>
 
             <!-- Content Row -->
@@ -61,75 +61,75 @@ $statsAll = $allUser->toArray();
 
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <a href="page/dataMahasiswa.html">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Jumlah Mahasiswa</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?php
-                                            echo count($statsUser);
-                                            ?>
-                                        </div>
+                    <!-- <a href="page/dataMahasiswa.html"> -->
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Jumlah Mahasiswa</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php
+                                        echo count($statsUser);
+                                        ?>
                                     </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-user fa-2x text-gray-300"></i>
-                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-user fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
+                    <!-- </a> -->
                 </div>
 
                 <!-- Earnings (Monthly) Card Example -->
 
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <a href="adminBem.html">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Jumlah Akun Admin</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?php
-                                            echo count($statsAdmin);
-                                            ?>
-                                        </div>
+                    <!-- <a href="adminBem.html"> -->
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Jumlah Akun Admin</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php
+                                        echo count($statsAdmin);
+                                        ?>
                                     </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-list fa-2x text-gray-300"></i>
-                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-list fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
+                    <!-- </a> -->
                 </div>
 
 
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <a href="adminBem.html">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                            Jumlah Admin BEM</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?php
-                                            echo count($statsBem);
-                                            ?>
-                                        </div>
+                    <!-- <a href="adminBem.html"> -->
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Jumlah Admin BEM</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php
+                                        echo count($statsBem);
+                                        ?>
                                     </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-user fa-2x text-gray-300"></i>
-                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-user fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
+                    <!-- </a> -->
                 </div>
 
                 <!-- Pending Requests Card Example -->
